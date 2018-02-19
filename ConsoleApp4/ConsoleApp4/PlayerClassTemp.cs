@@ -12,11 +12,13 @@ namespace ConsoleApp4
         protected string sCharacterName; // Name of the character
         protected int iCharacterHealth; // Health of the character
         protected int iCharacterMaxHealth; // Max Health;
-        protected int iMinimumDamage; // Minimum damage of player                                                                   // Rand(iMinimumDamage,iMaximumDamage);
+        protected int iMinimumDamage; // Minimum damage of player                                                                   
         protected int iMaximumDamage; // Maximum damage of player
         protected int iPlayerDodgeValue; // Dodge value of player
         protected int iPlayerAccuracy; // Hit chance of player
-        Random rRNGesus = new Random();
+        protected Random rRNGesus = new Random(); // Rand(iMinimumDamage,iMaximumDamage);
+        protected int iExperiance;
+        protected int iLevel;
 
         public string Name
         {
@@ -63,6 +65,27 @@ namespace ConsoleApp4
             }
         }
 
+        public int Level
+        {
+            get
+            {
+                return iLevel;
+            }
+            set
+            {
+                if(iExperiance>iLevel*1000)
+                {
+                    iLevel++;
+                    iExperiance -= 1000;
+                }
+
+                else
+                {
+
+                }
+                
+            }
+        }
 
         public bool PlayerAttack(int EnemyDodge)
         {
@@ -72,12 +95,16 @@ namespace ConsoleApp4
 
             if (iTempAttackRoll >= EnemyDodge)
             {
+                Console.WriteLine("Get it Ma Boi");
                 return true;
+                
             }
 
             else
             {
+                Console.WriteLine("Better Luck Next Time Ma Boi");
                 return false;
+
             }
 
         }
@@ -130,16 +157,17 @@ namespace ConsoleApp4
             }
         }
 
-        public int SpecialAttack()
+        public virtual int SpecialAttack()
         {
             return 0;
         }
 
-        public int SpecicalAttack_2()
+        public virtual int SpecicalAttack_2()
         {
             return 0;
         }
 
+        
 
     }
 
@@ -147,7 +175,63 @@ namespace ConsoleApp4
     {
         public Fat_Boi(string InputName)
         {
+            iCharacterHealth = 100;
+            iCharacterMaxHealth = 100;
+            iMinimumDamage = 10;
+            iMaximumDamage = 16;
+            iPlayerDodgeValue = 5;
+            iPlayerAccuracy = 6;
+            iLevel = 1;
            
+        }
+
+        public override int SpecialAttack()
+        {
+            Console.WriteLine("Fat Boi Special Smash!!!!!");
+            return (Health / 5);
+        }
+
+        public override int SpecicalAttack_2()
+        {
+            Console.WriteLine("Fat Boi Ultimate Attack");
+            return iMaximumDamage;
+        }
+
+
+    }
+
+    class Stabby_Boi : PlayerClassTemp
+    {
+        public Stabby_Boi(string InputName)
+        {
+            iCharacterHealth = 50;
+            iCharacterMaxHealth = 50;
+            iMinimumDamage = 13;
+            iMaximumDamage = 22;
+            iPlayerDodgeValue = 10;
+            iPlayerAccuracy = 11;
+            iLevel = 1;
+        }
+
+        public override int SpecialAttack()
+        {
+            int iTempCrit = 0;
+            iTempCrit = rRNGesus.Next(1, 7);
+            
+            if(iTempCrit>4)
+            {
+                return Convert.ToInt32(iMaximumDamage * 2.5);
+            }
+
+            else
+            {
+                return 0;
+            }
+        }
+
+        public override int SpecicalAttack_2()
+        {
+            return iPlayerDodgeValue+ iPlayerAccuracy;
         }
 
 
