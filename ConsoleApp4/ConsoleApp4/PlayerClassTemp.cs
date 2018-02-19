@@ -19,7 +19,7 @@ namespace ConsoleApp4
         protected Random rRNGesus = new Random(); // Rand(iMinimumDamage,iMaximumDamage);
         protected int iExperiance;
         protected int iLevel;
-
+        protected int iMana;
         public string Name
         {
             get
@@ -73,7 +73,7 @@ namespace ConsoleApp4
             }
             set
             {
-                if(iExperiance>iLevel*1000)
+                if (iExperiance > iLevel * 1000)
                 {
                     iLevel++;
                     iExperiance -= 1000;
@@ -83,7 +83,7 @@ namespace ConsoleApp4
                 {
 
                 }
-                
+
             }
         }
 
@@ -97,7 +97,7 @@ namespace ConsoleApp4
             {
                 Console.WriteLine("Get it Ma Boi");
                 return true;
-                
+
             }
 
             else
@@ -129,7 +129,7 @@ namespace ConsoleApp4
         {
             int iTempDefendRoll = 0;
             iTempDefendRoll = rRNGesus.Next(1, 21);
-            iTempDefendRoll =+ iPlayerDodgeValue;
+            iTempDefendRoll = +iPlayerDodgeValue;
 
             if (iTempDefendRoll >= EnemyAttack)
             {
@@ -167,7 +167,7 @@ namespace ConsoleApp4
             return 0;
         }
 
-        
+
 
     }
 
@@ -182,7 +182,7 @@ namespace ConsoleApp4
             iPlayerDodgeValue = 5;
             iPlayerAccuracy = 6;
             iLevel = 1;
-           
+
         }
 
         public override int SpecialAttack()
@@ -217,8 +217,8 @@ namespace ConsoleApp4
         {
             int iTempCrit = 0;
             iTempCrit = rRNGesus.Next(1, 7);
-            
-            if(iTempCrit>4)
+
+            if (iTempCrit > 4)
             {
                 return Convert.ToInt32(iMaximumDamage * 2.5);
             }
@@ -231,7 +231,85 @@ namespace ConsoleApp4
 
         public override int SpecicalAttack_2()
         {
-            return iPlayerDodgeValue+ iPlayerAccuracy;
+            return iPlayerDodgeValue + iPlayerAccuracy;
+        }
+
+
+    }
+    class Wise_Boi : PlayerClassTemp
+    {
+        public Wise_Boi(string InputName)
+        {
+            iCharacterHealth = 50;
+            iCharacterMaxHealth = 50;
+            iMinimumDamage = 16;
+            iMaximumDamage = 24;
+            iPlayerDodgeValue = 4;
+            iPlayerAccuracy = 6;
+            iLevel = 1;
+        }
+
+        public override int SpecialAttack()
+        {
+            int iSpellCount = 0;
+            iSpellCount = rRNGesus.Next(1, 7);
+
+            return Convert.ToInt32((iMinimumDamage / 3) * iSpellCount);
+        }
+
+        public override int SpecicalAttack_2()
+        {
+            return iLevel * iMinimumDamage;
+        }
+        class Spooki_Boi : PlayerClassTemp
+        {
+            public Spooki_Boi(string InputName)
+            {
+                iCharacterHealth = 60;
+                iCharacterMaxHealth = 60;
+                iMinimumDamage = 10;
+                iMaximumDamage = 25;
+                iPlayerDodgeValue = 2;
+                iPlayerAccuracy = 9;
+                iLevel = 1;
+            }
+
+            public override int SpecialAttack()
+            {
+                Health += 10;
+                return rRNGesus.Next(iMinimumDamage, iMaximumDamage);
+            }
+
+            public override int SpecicalAttack_2()
+            {
+                Health -= 10;
+                return iMaximumDamage * 3;
+            }
+        }
+        class Holi_Boi : PlayerClassTemp
+        {
+            public Holi_Boi(string InputName)
+            {
+                iCharacterHealth = 70;
+                iCharacterMaxHealth = 70;
+                iMinimumDamage = 11;
+                iMaximumDamage = 19;
+                iPlayerDodgeValue = 4;
+                iPlayerAccuracy = 7;
+                iLevel = 1;
+            }
+
+            public override int SpecialAttack()
+            {
+                Health += 20;
+                return Convert.ToInt32((iMinimumDamage+iMaximumDamage)/2);
+            }
+            public override int SpecicalAttack_2()
+            {
+                return Convert.ToInt32(iCharacterHealth/3);
+            }
+
+
         }
 
 
