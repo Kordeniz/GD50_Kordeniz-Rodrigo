@@ -1,0 +1,7 @@
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\bin\Debug\ConsoleApp4.exe.config
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\bin\Debug\ConsoleApp4.exe
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\bin\Debug\ConsoleApp4.pdb
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.csprojResolveAssemblyReference.cache
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.csproj.CoreCompileInputs.cache
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.exe
+C:\Users\gd50kordeniz\Desktop\GD50_Kordeniz-Rodrigo-master\ConsoleApp4\ConsoleApp4\obj\Debug\ConsoleApp4.pdb
