@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Threading;
 namespace ConsoleApp4
 {
     class Program
     {
         static void Main(string[] args)
         {
-            bool isCombat = true;
             int iDungeonLevel = 0;
             string sPlayerInput;
             int iPlayerInput;
             PlayerClassTemp Boi;
-            Goblin Goblin = new Goblin();
-
             sPlayerInput = Console.ReadLine();
             iPlayerInput = PlayerNumberCheck(0, 4, sPlayerInput);
-
+            Random rMonsterSelected = new Random();
             sPlayerInput = Console.ReadLine();
-
+            int iMonsterType;
+            MonsterTemplate Monster;
             //Charater Creation
             switch (iPlayerInput)
             {
@@ -47,13 +45,62 @@ namespace ConsoleApp4
                     }
             }
 
-            Console.WriteLine(Goblin.iMonsterHealth);
-            sPlayerInput = Console.ReadLine();
-            iPlayerInput = PlayerNumberCheck(0, 4, sPlayerInput);
-            Goblin.iMonsterHealth -= Boi.AttackTemp(iPlayerInput, Goblin.Dodge);
+            for (iDungeonLevel = 0; iDungeonLevel < 5; iDungeonLevel++)
+            {
+                iMonsterType = rMonsterSelected.Next(1, 4);
 
-            Console.WriteLine(Goblin.iMonsterHealth);
-            Console.ReadLine();
+                if (iMonsterType == 1)
+                {
+                    Monster = new Goblin();
+                    Console.WriteLine("A Gob Gob Boi Appears");
+                }
+                else if (iMonsterType == 2)
+                {
+                    Monster = new Elf();
+                    Console.WriteLine("A Pointi Boi Appears");
+                }
+                else if (iMonsterType == 3)
+                {
+                    Console.WriteLine("A Fliyng Mice Boi Appears");
+                    Monster = new Bat();
+                }
+                else
+                {
+                    Monster = new Goblin();
+                }
+
+                while (Monster.MonsterHealth > 0 && Boi.Health > 0)
+                {
+                    Boi.Health -= Monster.MonsterAttackTemp(Boi.Dodge);
+
+                    if (Boi.Health > 0)
+                    {
+                        sPlayerInput = Console.ReadLine();
+                        iPlayerInput = PlayerNumberCheck(0, 4, sPlayerInput);
+                        Monster.MonsterHealth -= Boi.AttackTemp(iPlayerInput, Monster.Dodge);
+                        Console.WriteLine(Monster.MonsterHealth);
+                    }
+                    else
+                    { }
+
+                }
+                if (Boi.Health > 0)
+                {
+                    Console.WriteLine("Moving to Next Floor");
+                    Thread.Sleep(250);
+                    Console.Write(".");
+                    Thread.Sleep(1500);
+                    Console.Write(".");
+                    Thread.Sleep(2000);
+                    Console.Write(".");
+                    Boi.Health += 25;
+                }
+
+
+            }
+
+
+
 
 
 
